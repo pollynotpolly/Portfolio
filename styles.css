@@ -21,6 +21,7 @@ body {
 
 p, li {
     font-size: 1rem; /* Relative to root element */
+    margin: 1em 0;
 }
 
 h1 {
@@ -60,7 +61,7 @@ background: #00ff00;}
 }
 
 .image-links img {
-    max-width: 100%;
+    max-width: 30%;
     height: auto;
     width: 400px; 
 }

@@ -2,9 +2,12 @@
 :root {
     --text-color: #1C1E0D;
     --bg-color: #FFF7E3;
-    --link-color: #A2EBD1;
+    --link-color: #2610e9;
+    --button-color: #A2EBD1;
     --font-size: 16px;
     --line-height: 1.6;
+    --image-bg-high-contrast: #ffffff;
+    
 }
 
 body {
@@ -25,11 +28,23 @@ p, li {
 }
 
 h1 {
-    font-size: 3.5rem; 
-    color: var (--text-color); /* Ensure good contrast */
-    margin-bottom: 1rem; /* Add some space below the h1 */
-    max-width: none;
-    border-bottom: 2px solid #dbdbdb; /* Add a border for better visibility */
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    max-width: 100%;
+    border-bottom: 2px solid #dbdbdb;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+}
+
+a {
+    color: var(--link-color);
 }
 
 /* High contrast mode */
@@ -37,19 +52,9 @@ h1 {
     --text-color: #fff;
     --bg-color: #000;
     --link-color: #00ff00;
+    --button-color: #00ff00;
+    --image-bg-high-contrast: #ffffff;
 }
-
-[data-theme="high-contrast"] .resources-bar {
-    background: #000;
-    border: 1px solid #fff;
-}
-
-[data-theme="high-contrast"] .resources-bar a {
-    color: #00ff00;
-}
-
-[data-theme="high-contrast"] #toc-toggle {
-background: #00ff00;}
 
 .info-boxes {
     border: 2px solid #ddd;
@@ -60,10 +65,40 @@ background: #00ff00;}
     margin: 10px;
 }
 
+.image-links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.image-links a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
 .image-links img {
-    max-width: 30%;
+    max-width: 100%;
     height: auto;
-    width: 400px; 
+    width: 60px; /* Adjust this value to make images smaller */
+    transition: transform 0.3s ease;
+}
+
+[data-theme="high-contrast"] .image-links img {
+    background-color: var(--image-bg-high-contrast);
+    border: 2px solid var(--text-color);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.image-links img:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .image-links img {
+        width: 50px; /* Smaller size for mobile devices */
+    }
 }
 
 .page-grid {
@@ -78,12 +113,12 @@ background: #00ff00;}
 .explanation {
     --bg-color: #FFF7E3;
     padding: 15px;
-    border-left: 4px solid var(--link-color);
+    border-left: 4px solid var(--button-color);
     margin: 10px 0;
 }
 
 button {
-    background: var(--link-color);
+    background: var(--button-color);
     color: #1C1E0D;
     border: 1px solid;
     border-bottom: 3px solid;
